@@ -1,0 +1,51 @@
+% Propositional Logic
+
+\section{Propositional Logic}
+
+\subsection{Syntax}
+\begin{itemize}
+	\item \textbf{Atom}: basic elements
+	\begin{itemize}
+		\item truth symbols $\bot$(``false'') and $\top$(``true'')
+		\item propositional variables $P,Q,R,\dots$
+	\end{itemize}
+	\item \textbf{Literal}: an atom $\alpha$ or its negation $\lnot\alpha$.
+	\item \textbf{Formula}: a literal or the application of a logical connective (boolean connectives) to formulas
+	\[
+	\begin{array}{ccll}
+		F & \to & \bot \\
+		& | & \top \\
+		& | & P \\
+		& | & \lnot F & \text{negation (``not'')} \\
+		& | & F_1\land F_2 & \text{conjunction (``and'')} \\
+		& | & F_1\lor F_2 & \text{disjunction (``or'')} \\
+		& | & F_1\to F_2 & \text{implication (``implies'')} \\
+		& | & F_1\leftrightarrow F_2 & \text{iff (``if and only if'')}
+	\end{array}
+	\]
+	\item[]
+	\item Formula $G$ is a \textbf{subformula} of formula $F$ if it occurs syntactically within $G$.
+	\begin{align*}
+		\sub{\bot} &= \set{\bot} \\
+		\sub{\top} &= \set{\top} \\
+		\sub{P} &= \set{P} \\
+		\sub{\lnot F} &= \set{\lnot F}\cup\sub{F} \\
+		\sub{F_1\land F_2} &= \set{F_1\land F_2}\cup\sub{F_1}\cup\sub{F_2}
+		&\vdots
+	\end{align*}
+	\item Consider $F:(P\land Q)\to (P\lor\lnot Q)$. Then \[
+	\sub{F}=\set{F,P\land Q,P\lor\lnot Q,P,Q,\lnot Q}.
+	\]
+	\item The strict subformulas of a formula are all its subformulas except itself.
+	\item[]
+	\item To minimally use parentheses, we define the relative precedence of the logical connectives from highest to lowest as follows: \[
+	\lnot\quad\land\quad\lor\quad\rightarrow\quad\leftrightarrow
+	\]
+	\item (Currying) Additionally, $\rightarrow$ and $\leftrightarrow$ associate to the right, e.g., \[
+	P\to Q\to R\iff P\to(Q\to R).
+	\]
+	\item Example:
+	\begin{itemize}
+		\item $(P\land Q)\to (P\lor\lnot Q)\iff P\land Q\to P\lor \lnot Q$
+	\end{itemize}
+\end{itemize}

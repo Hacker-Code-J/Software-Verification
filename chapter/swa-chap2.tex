@@ -1,0 +1,61 @@
+% Chapter II. Greybox Fuzzing and Concolic Testing
+
+\section{Greybox Fuzzing}
+How to Generate Automatic Test Cases?
+\subsection{Setup}
+\begin{itemize}
+	\item $\cP$: Program under test (PUT)
+	\item Program execution(semantics): \[
+	\llbracket\mathcal{P}\rrbracket:\Sigma^*\to\cR
+	\] \begin{itemize}
+		\item $\Sigma$: input characters, e.g., ASCII Code
+		\item $\cR$: execution results
+	\end{itemize}
+	\item Test Oracle: \[
+	\oracle:\Sigma^*\times\cR\to\set{\bot,\top}
+	\]
+	\begin{itemize}
+		\item $\top$: the program has run correctly (expected outcome)
+		\item $\bot$: the program has run incorrectly (unexpected outcome)
+		\item E.g., ``crash oracle'', reference implementation, etc. 
+	\end{itemize}
+\end{itemize}
+
+\subsection{Random Fuzzing}
+\begin{algorithm}\DontPrintSemicolon
+	\caption{Random Fuzzing}
+	\Procedure{\textsc{\upshape RandomFuzzer}($\cP$)}{
+		$\text{bugs}\gets\emptyset$\;
+	 	\While{\upshape time budget expires}{
+ 			$\text{in}\gets\textsc{Sample}(\Sigma^*)$\;
+ 			$\text{res}\gets\llbracket\cP\rrbracket(\text{in})$\;
+ 			\If{\upshape$\oracle(\text{in},\text{res})=\bot$}{
+ 				$\text{bugs}\gets\text{bugs}\cup\set{\text{in}}$\;
+ 			}
+ 		}
+ 		\Return $\text{bugs}$\;
+	}
+\end{algorithm}
+	
+\newpage
+\subsection{Limitation}
+\begin{itemize}
+	\item Programs typically expect inputs in specific language $(L\subseteq \Sigma^*)$
+	\begin{itemize}
+		\item e.g., web browsers, image processors, compliers, etc.
+	\end{itemize}
+	\item Random inputs are unlikely to exercise deep program paths
+\end{itemize}
+
+\subsection{(Structural) Code Coverage}
+\begin{lstlisting}[style=C]
+int foo (int x, int y) {
+	int z = 0;
+	if (x > 3 && y < 6) {
+		z = x;
+	}
+	return z; 
+}
+\end{lstlisting}
+
+\section{Concolic Testing}

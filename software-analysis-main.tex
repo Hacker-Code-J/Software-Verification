@@ -1,0 +1,44 @@
+% pdflatex -shell-escape software-analysis-main.tex
+\documentclass[12pt,openany]{book}
+
+\input{preamble/swa-layout}
+\input{preamble/swa-package}
+\input{preamble/swa-algorithm}
+\input{preamble/swa-listing}
+\input{preamble/swa-commands}
+%\input{cryptanalysis-lstlisting}
+
+\begin{document}
+	
+	\input{swa-titlepage}
+	\tableofcontents
+	\newpage
+	\chapter{Introduction}
+	\input{chapter/swa-chap1}
+	
+	\newpage
+	\chapter{Greybox Fuzzing and Concolic Testing}
+	\input{chapter/swa-chap2}
+	
+	\newpage
+	\chapter{Propositional Logic}
+	\input{chapter/swa-chap3}
+	
+	
+	%
+	%\chapter{Preliminaries}
+	%\input{preliminaries.tex}
+	
+%	\chapter{Midterm Examination}
+%	\input{cryptanalysis-contents/cryptanalysis-ch1-midterm}
+	
+%	\chapter{Practice Code}
+%	\input{cryptanalysis-contents/cryptanalysis-src1-tmto}
+	%\input{cryptanalysis-contents/cryptanalysis-ch2-tmto}
+	% Add more topics as needed
+	
+%	\newpage
+	%\printbibliography
+	%\input{bibliography.tex}
+	
+\end{document}
