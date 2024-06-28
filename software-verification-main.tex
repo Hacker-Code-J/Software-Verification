@@ -1,0 +1,65 @@
+% pdflatex -shell-escape software-analysis-main.tex
+\documentclass[12pt,openany]{book}
+
+\input{preamble/swv-package}
+\input{preamble/swv-theorem}
+\input{preamble/swv-layout}
+\input{preamble/swv-tikz}
+\input{preamble/swv-algorithm}
+\input{preamble/swv-listing}
+\input{preamble/swv-commands}
+%\input{cryptanalysis-lstlisting}
+%\usepackage[backend=biber,style=numeric,citestyle=numeric]{biblatex}
+%\addbibresource{swv-references.bib}
+\begin{document}
+	
+	\input{swv-titlepage}
+	\tableofcontents
+	\newpage
+	\input{swv-symbols}
+	\newpage
+	\chapter{Introduction}
+	\input{chapter/swv-chap1}
+	
+	\newpage
+%	\chapter{Greybox Fuzzing and Concolic Testing}
+%	\input{chapter/swv-chap2}
+	
+	\newpage
+	\chapter{Propositional Logic I}
+	\input{chapter/swv-chap2}
+	
+	\newpage
+	\chapter{Propositional Logic II}
+	\input{chapter/swv-chap3}
+	
+	\newpage
+	\chapter{Problem Solving using SMT Solver}
+	\input{chapter/swv-chap4}
+	
+	\newpage
+	\chapter{First-Order Logic}
+	\input{chapter/swv-chap5}
+	
+	%
+	%\chapter{Preliminaries}
+	%\input{preliminaries.tex}
+	
+%	\chapter{Midterm Examination}
+%	\input{cryptanalysis-contents/cryptanalysis-ch1-midterm}
+	
+%	\chapter{Practice Code}
+%	\input{cryptanalysis-contents/cryptanalysis-src1-tmto}
+	%\input{cryptanalysis-contents/cryptanalysis-ch2-tmto}
+	% Add more topics as needed
+	
+%	\newpage
+%	\printbibliography
+%	\input{bibliography.tex}
+	
+%	\footnotesize
+	\bibliographystyle{plain}
+%	\bibliographystyle{plainnat}  % Use the plainnat style
+	\bibliography{swv-references}
+	
+\end{document}
