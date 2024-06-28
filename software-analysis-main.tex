@@ -1,8 +1,10 @@
 % pdflatex -shell-escape software-analysis-main.tex
 \documentclass[12pt,openany]{book}
 
-\input{preamble/swa-layout}
 \input{preamble/swa-package}
+\input{preamble/swa-theorem}
+\input{preamble/swa-layout}
+\input{preamble/swa-tikz}
 \input{preamble/swa-algorithm}
 \input{preamble/swa-listing}
 \input{preamble/swa-commands}
@@ -13,17 +15,25 @@
 	\input{swa-titlepage}
 	\tableofcontents
 	\newpage
+	\input{swa-symbols}
+	\newpage
 	\chapter{Introduction}
 	\input{chapter/swa-chap1}
 	
 	\newpage
-	\chapter{Greybox Fuzzing and Concolic Testing}
+%	\chapter{Greybox Fuzzing and Concolic Testing}
+%	\input{chapter/swa-chap2}
+	
+	\newpage
+	\chapter{Propositional Logic I}
 	\input{chapter/swa-chap2}
 	
 	\newpage
-	\chapter{Propositional Logic}
+	\chapter{Propositional Logic II}
 	\input{chapter/swa-chap3}
 	
+	\newpage
+	\chapter{title}
 	
 	%
 	%\chapter{Preliminaries}
