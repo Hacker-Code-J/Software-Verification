@@ -1,0 +1,346 @@
+% Truth Functions
+\section{Unary and Binary Boolean Function}
+\defbox[Propositional Variable]{
+\begin{definition}
+	A propositional variable is an element of the set $\set{\false,\true}$.
+\end{definition}}
+\begin{example}
+	$P,Q,R,\dots,\in\set{\false,\true}$ and so on.
+\end{example}
+\defbox[Truth Function]{
+\begin{definition}
+	Let $\B=\set{\false, \true}$ be the \textit{boolean domain}. Let $k\in\N$. A mapping \[
+	f:\B^k\to\B
+	\] is called a \textbf{truth function}.
+\end{definition}}
+
+%\begin{remark}[Truth Functions of Connectives]
+%	The logical connectives are assumed to be \textbf{truth-functional}.
+%	Hence, they are represented by certain \textbf{truth functions}.
+%	\begin{itemize}
+%		\item[] \textbf{Logical Negation} The \textit{logical not connective} defines the truth function $f^{\lnot}$
+%		as follows:
+%		\begin{align*}
+%			f^{\lnot}(\false)&=\true\\
+%			f^{\lnot}(\true)&=\false
+%		\end{align*}
+%		\item[] \textbf{Logical Conjunction} The \textit{conjunction connective} defines the truth function $f^{\land}$
+%		as follows:
+%		\begin{align*}
+%			f^{\land}(\true,\true)&=\true\\
+%			f^{\land}(\true,\false)&=\false\\
+%			f^{\land}(\false,\true)&=\false\\
+%			f^{\land}(\false,\false)&=\false
+%		\end{align*}
+%		\item[] \textbf{Logical Disjunction} The \textit{disjunction connective} defines the truth function $f^{\lor}$
+%		as follows:
+%		\begin{align*}
+%			f^{\lor}(\true,\true)&=\true\\
+%			f^{\lor}(\true,\false)&=\true\\
+%			f^{\lor}(\false,\true)&=\true\\
+%			f^{\lor}(\false,\false)&=\false
+%		\end{align*}
+%	\end{itemize}
+%\end{remark}
+
+\probox[Count of Truth Functions]{
+\begin{proposition}\hypertarget{prop-A11}{}
+	There are $2^{(2^k)}$ distinct truth functions on $k$ variables.
+\end{proposition}}
+\begin{proof}
+	Let $f:\B^k\to\B$ be a truth function for $k\in\N$. Then
+	\begin{itemize}
+		\item[] (Cardinality of Cartesian Product of Finite Sets)
+		\begin{align*}
+			\#(\B^k)&=\#(\overbrace{\B\times\cdots\times\B}^{\text{$k$ times}})
+			=\overbrace{\#\B\#\B\cdots\#\B}^{\text{$k$ times}}
+			=\overbrace{2\cdot 2\cdots2}^{\text{$k$ times}}
+			=2^k.
+		\end{align*}
+		\item[] (Cardinality of Set of All Mappings.)
+		\begin{align*}
+			\#(T^S)=\#\set{f\subseteq S\times T:\text{$f$ is a mapping}}=(\# T)^{(\# S)}
+			\implies \#(\B)^{\#(\B^k)}=2^{(2^k)}
+		\end{align*}
+	\end{itemize}
+\end{proof}
+
+\corbox[Unary Truth Functions]{
+\begin{corollary}
+	There are 4 distinct unary truth functions:
+	\begin{itemize}
+		\item The \textit{constant function} $f(P)=\false$
+		\item The \textit{constant function} $f(P)=\true$
+		\item The \textit{identity function} $f(P)=P$
+		\item The \textit{logical not function} $f(P)=\lnot P$
+	\end{itemize}
+\end{corollary}}
+\begin{proof}
+	By \hyperlink{prop-A11}{Count of Truth Functions}, there are $2^{(2^1)}=4$
+	distinct truth functions on single variable. These can be depicted in a truth table as follows:
+	\begin{table}[h!]\centering
+		\begin{tabular}{|c|cc|}
+			\hline
+			$P\in\B$ & $\false$ & $\true$ \\ \hline
+			$f_1$ & $\false$ & $\false$ \\ \hline
+			$f_2$ & $\false$ & $\true$ \\ \hline
+			$f_3$ & $\true$ & $\false$ \\ \hline
+			$f_4$ & $\true$ & $\true$ \\\hline
+		\end{tabular}
+%		\begin{tabular}{|c|cccc|}
+%			\hline
+%			$P\in\B$ & $f_1$ & $f_2$ & $f_3$ & $f_4$ \\
+%			\hline
+%			$\false$ & $\false$ & $\false$ & $\true$ & $\true$ \\
+%			$\true$ & $\false$ & $\true$ & $\false$ & $\true$ \\
+%			\hline
+%		\end{tabular}
+	\end{table}
+	\begin{center}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.9}{
+		\begin{tikzpicture}
+			% Draw the sets A and B
+			\draw[thick] (-2,0) ellipse (1 and 2);
+			\draw[thick] (2,0) ellipse (1 and 2);
+			
+			% Labels for sets
+			\node at (-2, 2.25) {$\B$};
+			\node at (2, 2.25) {$\B$};
+			
+			%			% Draw the arrows representing the function
+			\draw[-Stealth, thick] (-1.5, 2.25) -- (1.5,2.25) node[midway, above] {$f_1\triangleq\bot$};
+			
+			\node (A) at (-2, .75) {$\false$};
+			\node (B) at (-2, -.75) {$\true$};
+			\draw[fill] (-1.75,.75) circle (.05);
+			\draw[fill] (-1.75,-.75) circle (.05);
+			
+			\node (C) at (2, .75) {$\false$};
+			\node (D) at (2, -.75) {$\true$};
+			\draw[fill] (1.75,.75) circle (.05);
+			\draw[fill] (1.75,-.75) circle (.05);
+			
+			\draw[-Stealth, thick] (-1.75, .75) -- (1.75, .75);
+			\draw[-Stealth, thick] (-1.75, -.75) -- (1.75, .75);
+	\end{tikzpicture}}\\
+	$f_1$ is the \textit{constant function} $f_1(P)=\false$.
+	\end{minipage}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.9}{
+		\begin{tikzpicture}
+			% Draw the sets A and B
+			\draw[thick] (-2,0) ellipse (1 and 2);
+			\draw[thick] (2,0) ellipse (1 and 2);
+			
+			% Labels for sets
+			\node at (-2, 2.25) {$\B$};
+			\node at (2, 2.25) {$\B$};
+			
+			%			% Draw the arrows representing the function
+			\draw[-Stealth, thick] (-1.5, 2.25) -- (1.5,2.25) node[midway, above] {$f_2\triangleq P$};
+			
+			\node (A) at (-2, .75) {$\false$};
+			\node (B) at (-2, -.75) {$\true$};
+			\draw[fill] (-1.75,.75) circle (.05);
+			\draw[fill] (-1.75,-.75) circle (.05);
+			
+			\node (C) at (2, .75) {$\false$};
+			\node (D) at (2, -.75) {$\true$};
+			\draw[fill] (1.75,.75) circle (.05);
+			\draw[fill] (1.75,-.75) circle (.05);
+			
+			\draw[-Stealth, thick] (-1.75, .75) -- (1.75, .75);
+			\draw[-Stealth, thick] (-1.75, -.75) -- (1.75, -.75);
+	\end{tikzpicture}}\\
+	$f_2$ is the \textit{identity function} $f_2(P)=P$.
+\end{minipage}
+	\end{center}
+	\begin{center}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.9}{
+				\begin{tikzpicture}
+					% Draw the sets A and B
+					\draw[thick] (-2,0) ellipse (1 and 2);
+					\draw[thick] (2,0) ellipse (1 and 2);
+					
+					% Labels for sets
+					\node at (-2, 2.25) {$\B$};
+					\node at (2, 2.25) {$\B$};
+					
+					%			% Draw the arrows representing the function
+					\draw[-Stealth, thick] (-1.5, 2.25) -- (1.5,2.25) node[midway, above] {$f_3\triangleq\lnot$};
+					
+					\node (A) at (-2, .75) {$\false$};
+					\node (B) at (-2, -.75) {$\true$};
+					\draw[fill] (-1.75,.75) circle (.05);
+					\draw[fill] (-1.75,-.75) circle (.05);
+					
+					\node (C) at (2, .75) {$\false$};
+					\node (D) at (2, -.75) {$\true$};
+					\draw[fill] (1.75,.75) circle (.05);
+					\draw[fill] (1.75,-.75) circle (.05);
+					
+					\draw[-Stealth, thick] (-1.75, .75) -- (1.75, -.75);
+					\draw[-Stealth, thick] (-1.75, -.75) -- (1.75, .75);
+			\end{tikzpicture}}\\
+			$f_1$ is the \textit{logical not function} $f_3(P)=\lnot P$.
+		\end{minipage}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.9}{
+				\begin{tikzpicture}
+					% Draw the sets A and B
+					\draw[thick] (-2,0) ellipse (1 and 2);
+					\draw[thick] (2,0) ellipse (1 and 2);
+					
+					% Labels for sets
+					\node at (-2, 2.25) {$\B$};
+					\node at (2, 2.25) {$\B$};
+					
+					%			% Draw the arrows representing the function
+					\draw[-Stealth, thick] (-1.5, 2.25) -- (1.5,2.25) node[midway, above] {$f_4\triangleq\top$};
+					
+					\node (A) at (-2, .75) {$\false$};
+					\node (B) at (-2, -.75) {$\true$};
+					\draw[fill] (-1.75,.75) circle (.05);
+					\draw[fill] (-1.75,-.75) circle (.05);
+					
+					\node (C) at (2, .75) {$\false$};
+					\node (D) at (2, -.75) {$\true$};
+					\draw[fill] (1.75,.75) circle (.05);
+					\draw[fill] (1.75,-.75) circle (.05);
+					
+					\draw[-Stealth, thick] (-1.75, .75) -- (1.75, -.75);
+					\draw[-Stealth, thick] (-1.75, -.75) -- (1.75, -.75);
+			\end{tikzpicture}}\\
+			$f_2$ is the \textit{constant function} $f_4(P)=\true$.
+		\end{minipage}
+	\end{center}
+\end{proof}
+\begin{remark}
+The structure is a non-associative magma, also known as a groupoid. \begin{table}[h!]\centering
+	\begin{tabular}{c||c|c|c|c}
+		$\circ$ & $\bot$ & $P$ & $\lnot$ & $\top$ \\ \hline\hline
+		$\bot$ & $\bot$ & $\bot$ & $\top$ & $\top$ \\ \hline
+		$P$ & $\bot$ & $P$ & $\lnot$ & $\top$ \\ \hline
+		$\lnot$ & $\bot$ & $\lnot$ & $P$ & $\top$ \\ \hline
+		$\top$ & $\bot$ & $\top$ & $\bot$ & $\top$
+	\end{tabular}
+\end{table}
+\end{remark}
+
+
+\begin{tcolorbox}[colframe=corcolor,title={\color{white}\bf Binary Truth Functions}]
+	\begin{corollary}
+		There are 16 distinct binary truth functions:
+		\begin{itemize}
+			\item Two \textit{constant operations}:
+			\begin{itemize}
+				\item $f_{\true}(p,q)=\true$
+				\item $f_{\false}(p,q)=\false$
+			\end{itemize}
+			\item Two \textit{projections}:
+			\begin{itemize}
+				\item $\mathsf{Proj}_1(p,q)=p$
+				\item $\mathsf{Proj}_2(p,q)=q$
+			\end{itemize} 
+			\item Two \textit{negated projections}:
+			\begin{itemize}
+				\item $\overline{\mathsf{Proj}_1}(p,q)=\lnot p$
+				\item $\overline{\mathsf{Proj}_2}(p,q)=\lnot q$
+			\end{itemize} 
+			\item The \textit{conjunction}: $p\land q$
+			\item The \textit{disjunction}: $p\lor q$
+			\item Two \textit{conditionals}:
+			\begin{itemize}
+				\item $p\implies q$
+				\item $q\implies p$
+			\end{itemize}
+			\item The \textit{biconditional} (iff): $p\iff q$
+			\item The \textit{exclusive or} (xor): $\lnot(p\iff q)$
+			\item Two \textit{negated conditionals}:
+			\begin{itemize}
+				\item $\lnot(p\implies q)$
+				\item $\lnot(q\implies p)$
+			\end{itemize}
+			\item The \textit{NAND} $p\uparrow q$
+			\item The \textit{NOR} $p\downarrow q$
+		\end{itemize}
+	\end{corollary}
+\end{tcolorbox}
+\begin{proof}
+	From Count of Truth Functions there are $2^{(2^2)}=16$
+	distinct truth functions on 2 variable. These can be depicted in a truth table as follows:
+	\begin{table}[h!]\centering
+		\begin{tabular}{|r|cccc|}
+			\hline
+			$p$ & $\true$ & $\true$ & $\false$ & $\false$ \\
+			$q$ & $\true$ & $\false$ & $\true$ & $\false$ \\
+			\hline
+			$f_{\false}(p,q)$ & $\false$ & $\false$ & $\false$ & $\false$ \\
+			$p\downarrow q$ & $\false$ & $\false$ & $\false$ & $\true$ \\
+			$\lnot(p\impliedby q)$ & $\false$ & $\false$ & $\true$ & $\false$ \\
+			$\overline{\mathsf{Proj}_1}(p,q)$ & $\false$ & $\false$ & $\true$ & $\true$ \\
+			$\lnot(p\implies q)$ & $\false$ & $\true$ & $\false$ & $\false$ \\
+			$\overline{\mathsf{Proj}_2}(p,q)$ & $\false$ & $\true$ & $\false$ & $\true$ \\
+			$\lnot(p\iff q)$ & $\false$ & $\true$ & $\true$ & $\false$ \\
+			$p\uparrow q$ & $\false$ & $\true$ & $\true$ & $\true$ \\
+			$p\land q$ & $\true$ & $\false$ & $\false$ & $\false$ \\
+			$p\iff q$ & $\true$ & $\false$ & $\false$ & $\true$ \\
+			$\mathsf{Proj}_2(p,q)$ & $\true$ & $\false$ & $\true$ & $\false$ \\
+			$p\implies q$ & $\true$ & $\false$ & $\true$ & $\true$ \\
+			$\mathsf{Proj}_1(p,q)$ & $\true$ & $\true$ & $\false$ & $\false$ \\
+			$p\impliedby q$ & $\true$ & $\true$ & $\false$ & $\true$ \\
+			$p\lor q$ & $\true$ & $\true$ & $\true$ & $\false$ \\
+			$f_{\true}(p,q)$ & $\true$ & $\true$ & $\true$ & $\true$ \\
+			\hline
+		\end{tabular}
+	\end{table}
+\end{proof}
+
+%\begin{tcolorbox}[colframe=defcolor,title={\color{white}\bf Formal Grammer}]
+%	\begin{definition}
+%		The formal grammar of the language of propositional logic (and hence its WFFs) can be defined in the following ways.
+%		\begin{itemize}
+%			\item \textbf{Backus-Naur Form}
+%			In Backus-Naur form, the formal grammar of the language of propositional logic takes the following form:
+%			\begin{align*}
+%				<\texttt{formula}>\quad &::=\quad p\mid\top\mid\bot &\text{where $p\in\mathcal{P}_0$ is a letter}\\
+%				<\texttt{formula}>\quad &::=\quad \lnot<\texttt{formula}>\\
+%				<\texttt{formula}>\quad &::=\quad (<\texttt{formula}> <\texttt{op}> <\texttt{formula}>)\\
+%				<\texttt{op}>\quad &::=\quad \land\mid\lor\mid\implies\mid\iff
+%			\end{align*} Note that this is a top-down grammar:
+%			we start with a metasymbol <formula>
+%			progressively replace it with constructs containing other metasymbols and/or primitive symbols
+%			until finally we are left with a well-formed formula of L0
+%			consisting of nothing but primitive symbols.
+%		\end{itemize}
+%		
+%	\end{definition}
+%\end{tcolorbox}
+
+\section{Backus-Naur Form (BNF)}
+
+Backus-Naur Form (BNF) is a notation technique for context-free grammars, often used to describe the syntax of languages used in computing. Introduced by John Backus and Peter Naur in the 1960s, BNF was initially developed to describe the syntax of the ALGOL 60 programming language.
+
+A grammar defines a language by providing a set of production rules that describe how sentences in the language can be formed. BNF uses non-terminal symbols, terminal symbols, and production rules to define these grammars.
+
+Non-terminal symbols are placeholders for patterns of terminal symbols that can be generated by applying production rules.
+
+Terminal symbols are the actual symbols of the language's alphabet, and they appear in the strings generated by the grammar.
+
+Production rules define how non-terminal symbols can be replaced with combinations of non-terminal and terminal symbols. BNF uses a specific syntax to describe these rules:
+
+\begin{verbatim}
+	<rule-name> ::= <expression>
+\end{verbatim}
+
+Extended BNF (EBNF) provides additional notation to simplify grammar definitions, such as optional elements and repetitions.
+
+BNF is a powerful tool for defining the syntax of programming languages and has been fundamental in the development of many language specifications. For more information, refer to resources such as the \emph{ALGOL 60 Report}, or textbooks on formal language theory and compiler design.
+
+
+\begin{example}
+Here is an example of BNF describing simple arithmetic expressions:
+\begin{verbatim}
+	<expression> ::= <term> | <term> "+" <expression>
+	<term> ::= <factor> | <factor> "*" <term>
+	<factor> ::= <number> | "(" <expression> ")"
+	<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+\end{verbatim}
+\end{example}
+
+
+

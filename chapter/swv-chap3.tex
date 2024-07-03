@@ -6,7 +6,43 @@
 
 \section{Equivalence and Implication, and Equisatisfiability}
 
+\subsection{Equivalence and Implication}
+\begin{itemize}
+	\item Two formulas $F_1$ and $F_2$ are equivalent \[
+		F_1\iff F_2
+	\] iff $F_1\leftrightarrow F_2$ is valid, \ie, for all interpretations $I$, $I\models F_1\leftrightarrow F_2$.
+	\item Formula $F_1$ implies formula $F_2$ \[
+	F_1\implies F_2
+	\] iff $F_1\to F_2$ is valid, \ie, for all interpretations $I$, $I\models F_1\to F_2$.
+	\item $F_1\iff F_2$ and $F_1\implies F_2$ are not formulas. They are semantic assertions.
+	\item We can check equivalence and implication by checking satisfiability.
+\end{itemize}
+\begin{example}
+\ \begin{itemize}
+	\item $P\iff\lnot\lnot P$ means that $P\leftrightarrow \lnot\lnot p$ is valid.
+	\item $P\to Q\iff \lnot P\lor Q$ means that $P\to Q\leftrightarrow \lnot P\lor Q$ is valid.
+\end{itemize}
+\end{example}
+\begin{exercise}
+	Prove that \[
+	R\land(\lnot R\lor P)\implies P.
+	\]
+	\begin{proof}[\sol]
+		content...
+	\end{proof}
+\end{exercise}
+
+
 \section{Substitution}
+
+\subsection{Substitution}
+\begin{example}
+	content...
+\end{example}
+
+\subsection{Semantic Consequences of Substitution}
+
+\subsection{Composition of Substitution}
 
 \section{Normal Forms: NNF, DNF, CNF}
 

@@ -23,12 +23,14 @@
 
 % Applying custom styles
 \theoremstyle{dotless}
+\newtheorem{proposition}{Proposition}[section] % Theorem environment with section-wise numbering
 \newtheorem{theorem}{Theorem}[section] % Theorem environment with section-wise numbering
 \newtheorem{lemma}[theorem]{Lemma} % Lemma shares the counter with theorem
 \newtheorem{corollary}[theorem]{Corollary} % Corollary shares the counter with theorem
 
 \theoremstyle{definitionstyle}
-\newtheorem{definition}[theorem]{Definition} % Definition shares the counter with theorem
-\newtheorem{example}[theorem]{Example} % Example shares the counter with theorem
-\newtheorem{remark}[theorem]{Remark} % Remark shares the counter with theorem
+\newtheorem{definition}{Definition}[section] % Definition shares the counter with theorem
+\newtheorem{example}{Example}[section] % Example shares the counter with theorem
+\newtheorem{exercise}{Exercise}[section] % Example shares the counter with theorem
+\newtheorem{remark}{Remark}[section] % Remark shares the counter with theorem
 \newtheorem*{note}{Note}

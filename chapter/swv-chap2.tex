@@ -2,8 +2,145 @@
 
 \cite{youtube:COSE419-Lecture4-1}
 
-\section{Syntax and Semantic}
+Propositional logic is a branch of logic that deals with propositions which can be either true or false. The basic components and operations in propositional logic are as follows:
+
+%\begin{align*}
+%	\texttt{<atom>} ::= &\ \text{"P"}\ |\ \text{"Q"}\ |\ \text{"R"}\ |\ \ldots\
+%\end{align*}
+%
+%\begin{align*}
+%	\texttt{<literal>} ::= &\ \texttt{<atom>} \\
+%	&\ |\ \text{"¬"}\ \texttt{<atom>}
+%\end{align*}
+%
+%\begin{align*}
+%	\texttt{<formula>} ::= &\ \texttt{<literal>} \\
+%	&\ |\ \text{"("}\ \texttt{<formula>}\ \text{")"} \\
+%	&\ |\ \text{"¬"}\ \texttt{<formula>} \\
+%	&\ |\ \text{"("}\ \texttt{<formula>}\ \text{"∧"}\ \texttt{<formula>}\ \text{")"} \\
+%	&\ |\ \text{"("}\ \texttt{<formula>}\ \text{"∨"}\ \texttt{<formula>}\ \text{")"} \\
+%	&\ |\ \text{"("}\ \texttt{<formula>}\ \text{"→"}\ \texttt{<formula>}\ \text{")"} \\
+%	&\ |\ \text{"("}\ \texttt{<formula>}\ \text{"↔"}\ \texttt{<formula>}\ \text{")"} \\
+%\end{align*}
+
+\section{Syntax and Semantic of Propositional Logic}
+\begin{center}
+\begin{tikzpicture}[
+	every node/.style={font=\large, node distance=3cm},
+	process/.style={rectangle, draw, text width=3.5cm, align=center, minimum height=1.5cm},
+	arrow/.style={thick, ->, >=Stealth}
+	]
+	
+	% Nodes
+	\node[process, fill=blue!20] (syntax) {Syntax \\ (Formal Rules)};
+	\node[process, fill=orange!20, right=of syntax] (interpretation) {Interpretation \\ (Model)};
+	\node[process, fill=green!20, right=of interpretation] (semantics) {Semantics \\ (Meaning)};
+	
+	% Arrows
+	\draw[arrow] (syntax) -- node[above, align=center] {Provides} node[below, align=center] {Structure} (interpretation);
+	\draw[arrow] (interpretation) -- node[above, align=center] {Gives} node[below, align=center] {Meaning} (semantics);
+	
+	% Labels
+	\node[below=1cm of syntax, align=center] {Set of \\ Formal Symbols};
+	\node[below=1cm of interpretation, align=center] {Model \\ (Structure)};
+	\node[below=1cm of semantics, align=center] {Rules of \\ Interpretation};
+	
+\end{tikzpicture}
+\end{center}
 \subsection{Syntax}
+% Tree illustrating Atoms, Literals, and Formulas
+\begin{center}\adjustbox{scale=.75}{
+%\begin{tikzpicture}[
+%	level distance=2.5cm,
+%	sibling distance=3.5cm,
+%	every node/.style={draw, shape=rectangle, rounded corners, align=center}
+%	]
+%	
+%	% Root
+%	\node {Boolean Logic}
+%	% Level 1
+%	child {node {Unary}
+%	}
+%	child {node {Binary}
+%	}
+%	% Level 2
+%	child {node {Atom}
+%		% Level 3 for Unary
+%		child {node {Unary: $\bot$ (false)}}
+%		child {node {Unary: $\top$ (true)}}
+%		% Level 3 for Binary
+%		child {node {Binary: $P, Q, R, \dots$}}
+%	}
+%	child {node {Literal}
+%		% Level 3 for Unary
+%		child {node {Unary: $\neg \bot$}}
+%		child {node {Unary: $\neg \top$}}
+%		% Level 3 for Binary
+%		child {node {Binary: $\neg P, \neg Q, \neg R, \dots$}}
+%	}
+%	child {node {Formula}
+%		% Level 3 for Unary
+%		child {node {Unary: $\neg F$ (not)}}
+%		% Level 3 for Binary
+%		child {node {Binary: $F_1 \land F_2$ (and)}}
+%		child {node {Binary: $F_1 \lor F_2$ (or)}}
+%		child {node {Binary: $F_1 \to F_2$ (implies)}}
+%		child {node {Binary: $F_1 \leftrightarrow F_2$ (if and only if)}}
+%	};
+%	
+%\end{tikzpicture}
+}
+\end{center}
+%\begin{tikzpicture}[
+%	node distance=2cm,
+%	every node/.style={draw, rectangle, rounded corners, align=center},
+%	level 1/.style={sibling distance=6cm},
+%	level 2/.style={sibling distance=3cm},
+%	level 3/.style={sibling distance=2cm}
+%	]
+%	
+%	% Root node
+%	\node (formula) {Formula};
+%	
+%	% Level 1
+%	\node [below left=of formula] (literal) {Literal}
+%	child {node (atom) {Atom\\(e.g., $P, Q$)}}
+%	child {node (negatom) {Negation of Atom\\(e.g., $\lnot P, \lnot Q$)}};
+%	
+%	\node [below right=of formula] (special) {Special Constant}
+%	child {node {True\\($\top$)}}
+%	child {node {False\\($\bot$)}};
+%	
+%	% Connections from Formula to Literals and Special Constants
+%	\draw (formula) -- (literal);
+%	\draw (formula) -- (special);
+%	
+%	% Level 2
+%	\node [below=2cm of literal] (unary) {Unary Truth Function}
+%	child {node (neg) {Negation\\($\lnot F$)}};
+%	
+%	\node [below=2cm of special] (binary) {Binary Truth Function}
+%	child {node (and) {Conjunction\\($F_1 \land F_2$)}}
+%	child {node (or) {Disjunction\\($F_1 \lor F_2$)}}
+%	child {node (imp) {Implication\\($F_1 \to F_2$)}}
+%	child {node (bicond) {Biconditional\\($F_1 \leftrightarrow F_2$)}};
+%	
+%	% Connections from Literals to Unary Truth Function
+%	\draw (literal) -- (unary);
+%	
+%	% Connections from Special Constants to Binary Truth Function
+%	\draw (special) -- (binary);
+%	
+%	% Level 3 Connections from Unary and Binary Truth Functions to Formulas
+%	\foreach \child in {neg, and, or, imp, bicond}
+%	\draw (\child) -- ++(0,-1) node[draw, rectangle, rounded corners, align=center] {Formula};
+%	
+%	% Additional connections to demonstrate usage
+%	\draw (negatom) -- (neg);
+%	\draw (atom) -- (unary);
+%	\draw (negatom) -- (unary);
+%	
+%\end{tikzpicture}
 \begin{itemize}
 	\item \textbf{Atom}: basic elements
 	\begin{itemize}
@@ -261,7 +398,34 @@ This aligns with the concept of exclusive or (XOR).
 
 \subsection{Proof Tree}
 
+A proof evolves as a tree.
+\begin{itemize}
+	\item A branch is a sequence descending from the root.
+	\item A branch is \textit{closed} it contains a contradiction. Otherwise, the branch is \textit{open}.
+	\item It is a proof of the validity of $F$ if every branch is closed; otherwise, each open branch describes a falsifying interpretation of $F$.
+\end{itemize}
+
 \subsection{Derived Rules}
+The proof rules are sufficient, but \textbf{derived rules} can make proofs more concise. E.g., the rule of modus ponens: \[
+\frac{I\models F\quad I\models F\to G}{I\models G}
+\]
+The proof of the validity of the formula:\[
+F:(P\to Q)\land (Q\to R)\to (P\to R)
+\]
+\[
+\begin{array}{lll}
+	1.& I\not\models F & \text{assumption} \\
+	2.& I\models (P\to Q)\land (Q\to R) & \text{by 1 and semantics of $\to$} \\
+	3.& I\models P\to R & \text{by 1 and semantics of $\to$} \\
+	4.& I\models P & \text{by 3 and semantics of $\to$} \\
+	5.& I\not\models R & \text{by 3 and semantics of $\to$} \\
+	6.& I\not\models P\to Q & \text{2 and semantics of $\land$} \\
+	7.& I\not\models Q\to R & \text{2 and semantics of $\land$} \\
+	8.& I\not\models Q & \text{by 4, 6, and modus ponens} \\
+	9.& I\not\models R & \text{by 8, 7, and modus ponens} \\
+	10.& I\models\bot & \text{5 and 9 are contradictory}
+\end{array}
+\]
 
 
 %\subsection*{1. Modus Ponens (MP)}
