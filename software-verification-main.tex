@@ -1,46 +1,46 @@
 % pdflatex -shell-escape software-analysis-main.tex
 \documentclass[12pt,openany]{book}
 
-\input{preamble/swv-package}
-\input{preamble/swv-theorem}
-\input{preamble/swv-layout}
-\input{preamble/swv-tcolorbox}
-\input{preamble/swv-tikz}
-\input{preamble/swv-algorithm}
-\input{preamble/swv-listing}
-\input{preamble/swv-commands}
+\input{preamble/package}
+\input{preamble/theorem}
+\input{preamble/layout}
+\input{preamble/tcolorbox}
+\input{preamble/tikz}
+\input{preamble/algorithm}
+\input{preamble/listing}
+\input{preamble/sv-commands}
 %\input{cryptanalysis-lstlisting}
 %\usepackage[backend=biber,style=numeric,citestyle=numeric]{biblatex}
-%\addbibresource{swv-references.bib}
+%\addbibresource{sv-references.bib}
 \begin{document}
 	
-	\input{swv-titlepage}
+	\input{sv-titlepage}
 	\tableofcontents
 	\newpage
-	\input{swv-symbols}
+	\input{sv-symbols}
 	\newpage
 	\chapter{Introduction}
-	\input{chapter/swv-chap1}
+	\input{chapter/sv-chap1}
 	
 	\newpage
 %	\chapter{Greybox Fuzzing and Concolic Testing}
-%	\input{chapter/swv-chap2}
+%	\input{chapter/sv-chap2}
 	
 	\newpage
 	\chapter{Propositional Logic I}
-	\input{chapter/swv-chap2}
+	\input{chapter/sv-chap2}
 	
 	\newpage
 	\chapter{Propositional Logic II}
-	\input{chapter/swv-chap3}
+	\input{chapter/sv-chap3}
 	
 	\newpage
 	\chapter{Problem Solving using SMT Solver}
-	\input{chapter/swv-chap4}
+	\input{chapter/sv-chap4}
 	
 	\newpage
 	\chapter{First-Order Logic}
-	\input{chapter/swv-chap5}
+	\input{chapter/sv-chap5}
 	
 	%
 	%\chapter{Preliminaries}
@@ -61,11 +61,11 @@
 	\newpage
 	\appendix
 	\chapter{Boolean Functions}
-	\input{appendix/swv-appendix-A}
+	\input{appendix/sv-appendix-A}
 	
 %	\footnotesize
 	\bibliographystyle{plain}
 %	\bibliographystyle{plainnat}  % Use the plainnat style
-	\bibliography{swv-references}
+	\bibliography{sv-references}
 	
 \end{document}
