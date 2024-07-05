@@ -28,48 +28,199 @@
 	R\land(\lnot R\lor P)\implies P.
 	\]
 	\begin{proof}[\sol]
-		content...
+		We want to show that $R\land(\lnot R\lor P)\to P$ is valid.
+		\[\begin{array}{lll}
+			1. & I\models R\land(\lnot R\lor P) & \\
+			2. & I\not\models P & \\
+			3. & I\models R & \\
+			4. & 
+		\end{array}
+		\]
 	\end{proof}
 \end{exercise}
 
-
 \section{Substitution}
-
+\begin{center}
+\input{tikz/substitution}
+\end{center}
 \subsection{Substitution}
+\begin{itemize}
+	\item A substitution $\sigma$ is a mapping from formulas to formulas: \[
+	\sigma:\set{F_1\mapsto G_1,\dots, F_n\mapsto G_n}
+	\]
+	\item The domain of $\sigma, \dom(\sigma)$, is \[
+	\dom(\sigma)=\set{F_1,\dots,F_n}
+	\] while the range is $\range(\sigma)$ \[
+	\range(\sigma):\set{G_1,\dots,G_n}.
+	\]
+	\item The application of a substitution $\sigma$ to a formula $F$, $F\sigma$, replaces each occurence of $F_i$ with $G_i$. Replacements occur all at once.
+	\item When two subformulas $F_j$ and $F_k$ are in $\dom(\sigma)$ and $F_k$ strict subformula of $F_j$, then $F_j$ is replaced first.
+\end{itemize}
+
 \begin{example}
-	content...
+Consider formula \[
+F:P\land Q\to P\lor\lnot Q
+\] and substitution \[
+\sigma:\set{P\mapsto R,P\land Q\mapsto P\to Q}.
+\] Then \[
+F\sigma:(P\to Q)\to R\lor\lnot Q.
+\] Note that $F\sigma\neq(R\to Q)\to R\lor\lnot Q$.
+\begin{center}
+\input{tikz/substitution-example}
+\end{center}
 \end{example}
+
+\begin{itemize}
+	\item A variable substitution is a substitution in which the domain consists only of propositional variables.
+	\item When we write $F[F_1,\dots,F_n]$, we mean that formula $F$ and have formulas $F_1,\dots,F_n$ as subformulas.
+	\item \[
+	\sigma:\set{F_1\mapsto G_1,\dots,F_n\mapsto G_n}\implies F[F_1,\dots,F_n]\sigma:F[G_1,\dots, G_n].
+	\]
+	\item For example, in the previous example, writing \[
+	F[P,P\land Q]\sigma:F[R,P\to Q]
+	\] emphasizes that $P$ and $P\land Q$ are replaced by $R$ and $P\to Q$, respectively.
+\end{itemize}
 
 \subsection{Semantic Consequences of Substitution}
 
-\subsection{Composition of Substitution}
+\lembox[Substitution of Equivalent Formulas]{\begin{lemma}
+Consider substitution $\sigma:\set{F_1\mapsto G_1,\dots,F_n\mapsto G_n}$ such that for each $i$, $F_i\iff G_i$. Then, \[
+F\iff F\sigma
+\]
+\end{lemma}}
+\begin{example}
+	Applying $\sigma:\set{F_1\mapsto G_1,\dots,F_n\mapsto G_n}$ to $F:(P\to Q)\to R$ produces $(\lnot P\lor Q)\to R$ that is equivalent to $F$.
+\end{example}
 
+\lembox[Valid Template]{\begin{lemma}
+If $F$ is valid and $G=F\sigma$ for some variable substitution $\sigma$, then $G$ is valid.
+\end{lemma}}
+\begin{example}
+	Because $F:(P\to Q)\leftrightarrow(\lnot P\lor Q)$ is valid, every formula of the form $F_1\to F_2$ is equivalent to $\lnot F_1\lor F_2$, for arbitrary formulas $F_1$ and $F_2$.
+\end{example}
+
+\subsection{Composition of Substitution}
+Given substitutions $\sigma_1$ and $\sigma_2$, their composition $\sigma=\sigma_1\sigma_2$ (``apply $\sigma_1$ and then $\sigma_2$'') is computed as follows:
+\begin{enumerate}
+	\item Apply $\sigma_2$ to each formula of the range of $\sigma_1$, and add the results to $\sigma$.
+	\item If $F_i$ of $F_i\mapsto G_i$ appears in the domain of $\sigma_2$ but not in the domain of $\sigma_1$, then add $F_i\mapsto G_i$ to $\sigma$.
+\end{enumerate}
+\begin{example}
+\begin{align*}
+	\sigma_1\sigma_2&:\set{P\mapsto R,P\land Q\mapsto P\to Q}\set{P\mapsto S,S\mapsto Q}\\
+	&=\set{P\mapsto R\sigma_2,P\land Q\mapsto (P\to Q)\sigma_2, S\mapsto Q} \\
+	&= \set{P\mapsto R, P\land Q\mapsto S\to Q, S\mapsto Q}.
+\end{align*}
+\end{example}
+
+\newpage
 \section{Normal Forms: NNF, DNF, CNF}
+A normal form of formulas is a syntactic restriction such that for every formula of the logic, there is an equivalent formula in the normal form. Three useful normal forms in logic:
+\begin{itemize}
+	\item \textbf{Negation Normal Form (NNF)}
+	\item \textbf{Disjunctive Normal Form (DNF)}
+	\item \textbf{Conjunctive Normal Form (CNF)}
+\end{itemize}
 
 \subsection{Negation Normal Form (NNF)}
+\begin{itemize}
+	\item NNF requires that $\lnot,\land$, and $\lor$ are the only connective (i.e., no $\to$ and $\leftrightarrow$) and that negations are only applied to variables.
+	\begin{itemize}
+		\item[(\textcolor{green!50!black}{$\boldsymbol{\vee}$})] $P\land Q\land (R\lor\lnot S)$
+		\item[(\textcolor{red}{$\boldsymbol{\times}$})] $\lnot P\lor\lnot(P\land Q)$
+		\item[(\textcolor{red}{$\boldsymbol{\times}$})] $\lnot\lnot P\land Q$
+	\end{itemize}
+	\item Transforming a formula $F$ to equivalent formula $F'$ in NFF can be done by repeatedly applying (left-to-right) the following template equivalences:
+	\begin{align*}
+		\lnot\lnot F_1 &\iff F_1 \\
+		\lnot\top &\iff \bot \\
+		\lnot\bot &\iff \top \\
+		\lnot(F_1\land F_2) &\iff \lnot F_1\lor\lnot F_2 \\
+		\lnot(F_1\lor F_2) &\iff \lnot F_1\land\lnot F_2 \\
+		F_1\to F_2 &\iff \lnot F_1\lor F_2 \\
+		F_1\leftrightarrow F_2 &\iff (\lnot F_1\lor F_2)\land(F_1\lor\lnot F_2)
+	\end{align*}
+\end{itemize}
+\begin{exercise}
+	Convert $F:\lnot(P\to\lnot (P\land Q))$ into NNF.
+\end{exercise}
+
 \subsection{Disjunctive Normal Form (DNF)}
+\begin{itemize}
+	\item A formula is in disjunction normal form (DNF) if it is a disjunction of conjunctions of literals \[
+	\bigvee_i\bigwedge_j l_{i,j}.
+	\]
+	\item To convert a formula $F$ into an equivalent formula in DNF, transform $F$ into NNF and then distribute conjunctions over disjunctions: \begin{align*}
+		(F_1\lor F_2)\land F_3 &\iff (F_1\land F_3)\lor (F_2\land F_3) \\
+		F_1\land (F_2\lor F_3) &\iff (F_1\land F_2)\lor (F_1\land F_3)
+	\end{align*}
+\end{itemize}
+
+\begin{exercise}
+	To convert \[
+	F:(Q_1\lor\lnot\lnot Q_2)\land(\lnot R_1\to R_2)
+	\] into DNF. \textcolor{gray!25!white}{
+	[Hint] First transform it into NNF, then apply distributivity.}
+\end{exercise}
+
 \subsection{Conjunctive Normal Form (CNF)}
+\begin{itemize}
+	\item A formula is in conjunctive normal form (CNF) if it is a conjunction of disjunctions of literals: \[
+	\bigwedge_i\bigvee_j l_{i,j}
+	\] where each disjunction of literals is called a \textbf{clause}.
+	\item To convert a formula $F$ into an equivalent formula in DNF, transform $F$ into NNF and distribute disjunctions over conjunctions: \begin{align*}
+		(F_1\land F_2)\lor F_3 &\iff (F_1\lor F_3)\land(F_2\lor F_3) \\
+		F_1\lor(F_2\land F_3) &\iff (F_1\lor F_2)\land(F_1\lor F_3)
+	\end{align*}
+\end{itemize}
 
 \section{Decision Procedures for Satisfiability}
+\subsection{Decision Procedures}
+\begin{itemize}
+	\item A \textbf{decision procedure} decides whether $F$ is satisfiable after some finite steps of computation.
+	\item Approaches for deciding satisfiability:
+	\begin{itemize}
+		\item \textbf{Search}: exhaustively search through all possible assignments
+		\item \textbf{Deduction}: deduce facts from known facts by iteratively applying proof rules
+		\item \textbf{Combination}: Modern SAT solvers are based on DPLL that combines search and deduction in an effective way
+	\end{itemize}
+\end{itemize}
 
-%\section{Substitution}
-%
-%\section{Semantic Consequences of Substitution}
-%
-%\section{Composition of Substitutions}
-%
-%\section{Normal Form}
+\subsection{Exhaustive Search}
+\begin{itemize}
+	\item The recursive algorithm for deciding satisfiability:
+	\item When applying $F\set{P\mapsto\top}$ and $F\set{P\mapsto\bot}$, the resulting formulas should be simplified using template equivalence on PL:
+%	\begin{align*}
+%		\top &\iff \lnot\bot \bot &\iff\lnot\top \lnot\lnot F&\iff F \\
+%		\top &\iff \lnot\bot \bot &\iff\lnot\top \lnot\lnot F&\iff F \\
+%	\end{align*}
+\end{itemize}
+\begin{example}
+	Consider \[
+	F:(P\to Q)\land\lnot P.
+	\] \begin{enumerate}
+		\item Choose $P$ and recurse on the first case: \[
+		F\set{P\mapsto \top}:(\top\to Q)\land\lnot\top
+		\] which is equivalent to $\bot$.
+		\item Try the other case: \[
+		F\set{P\to\bot}:(\bot\to Q)\land\lnot\bot
+		\] which is equivalent to $\top$.
+		\item Arbitrarily assigning a value to $Q$ produces the satisfying interpretation.
+	\end{enumerate}
+\end{example}
 
-%
-%\section{Decision Procedures}
-%
-%\section{Exhaustive Search}
-%
-%\section{DPLL}
-%
-%\section{Equisatisfiability}
-%
-%\section{Conversion to an Equisatisfiable Formula in CNF}
+\subsection{DPLL}
+
+\subsection{Equisatisfiability}
+\begin{itemize}
+	\item SAT solver convert a given formula $F$ to CNF.
+	\item Conversion to an equivalent CNF incurs exponential blow-up in worst-case.
+	\item $F$ is converted to and equisatisfiable CNF formula, which increase the size by only a constant factor.
+	\item $F$ and $F'$ are \textbf{equisatisfiable} when $F$ is satisfiable iff $F'$ is satisfiable.
+	\item Equisatisfiability is weaker notion of equivalence, which is still useful when deciding satisfiability.
+\end{itemize}
+
+\subsection{Conversion to an Equisatisfiable Formula in CNF}
 %
 %\section{The Resolution Procedure}
 %

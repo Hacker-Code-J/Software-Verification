@@ -25,27 +25,7 @@ Propositional logic is a branch of logic that deals with propositions which can 
 
 \section{Syntax and Semantic of Propositional Logic}
 \begin{center}
-\begin{tikzpicture}[
-	every node/.style={font=\large, node distance=3cm},
-	process/.style={rectangle, draw, text width=3.5cm, align=center, minimum height=1.5cm},
-	arrow/.style={thick, ->, >=Stealth}
-	]
-	
-	% Nodes
-	\node[process, fill=blue!20] (syntax) {Syntax \\ (Formal Rules)};
-	\node[process, fill=orange!20, right=of syntax] (interpretation) {Interpretation \\ (Model)};
-	\node[process, fill=green!20, right=of interpretation] (semantics) {Semantics \\ (Meaning)};
-	
-	% Arrows
-	\draw[arrow] (syntax) -- node[above, align=center] {Provides} node[below, align=center] {Structure} (interpretation);
-	\draw[arrow] (interpretation) -- node[above, align=center] {Gives} node[below, align=center] {Meaning} (semantics);
-	
-	% Labels
-	\node[below=1cm of syntax, align=center] {Set of \\ Formal Symbols};
-	\node[below=1cm of interpretation, align=center] {Model \\ (Structure)};
-	\node[below=1cm of semantics, align=center] {Rules of \\ Interpretation};
-	
-\end{tikzpicture}
+\input{tikz/syntax-interpretation-semantic}
 \end{center}
 \subsection{Syntax}
 % Tree illustrating Atoms, Literals, and Formulas
@@ -174,6 +154,12 @@ Propositional logic is a branch of logic that deals with propositions which can 
 	\item Consider $F:(P\land Q)\to (P\lor\lnot Q)$. Then \[
 	\sub{F}=\set{F,P\land Q,P\lor\lnot Q,P,Q,\lnot Q}.
 	\]
+	\begin{itemize}
+		\item $\to\ \in (\B^2)^{\B}$
+		\item $\land \in (\B^2)^{\B}$
+		\item $\lor \in (\B^2)^{\B}$
+		\item $\lnot \in (\B)^{\B}$
+	\end{itemize}
 	\item The strict subformulas of a formula are all its subformulas except itself.
 	\item[]
 	\item To minimally use parentheses, we define the relative precedence of the logical connectives from highest to lowest as follows: \[
@@ -264,28 +250,7 @@ I\models F_1\leftrightarrow F_2 &\text{iff}\ (I\models F_1\ \text{and}\ I\models
 \end{figure}
 
 \begin{figure}[h!]\centering
-\begin{tikzpicture}[
-	node distance=1cm and 2cm,
-	process/.style={rectangle, rounded corners, draw, minimum width=3cm, minimum height=1cm, text centered, font=\sffamily},
-	arrow/.style={-Stealth, thick},
-	pastelgreen/.style={fill=green!20},
-	pastelblue/.style={fill=blue!20},
-	pastelpink/.style={fill=pink!30},
-	pastelpurple/.style={fill=purple!20}
-	]
-	
-	% Nodes
-	\node (F) [process, pastelgreen] {$F$};
-	\node (SATsolver) [process, pastelblue, right=of F] {SAT Solver};
-	\node (SAT) [process, pastelpink, below right=of SATsolver] {SAT};
-	\node (UNSAT) [process, pastelpurple, above right=of SATsolver] {UNSAT};
-	
-	% Arrows
-	\draw[arrow] (F) -- (SATsolver);
-	\draw[arrow] (SATsolver) -- node[below left] {} (SAT);
-	\draw[arrow] (SATsolver) -- node[above left] {} (UNSAT);
-	
-\end{tikzpicture}
+\input{tikz/sat-solver}
 \end{figure}
 
 \newpage

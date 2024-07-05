@@ -1,6 +1,103 @@
 % First-Order Logic
 
+\section{Introduction to FOL}
+\begin{itemize}
+	\item An extension of propositional logic with predicates, functions, and quantifiers.
+	\item First-order logic is also called predicate logic, first-order predicate calculus, and relational logic.
+	\item First-order logic is expressive enough to reason about programs.
+	\item However, completely automated reasoning is not possible.
+\end{itemize}
+
+\subsection{Terms (Variables, Constants, and Functions)}
+\begin{itemize}
+	\item Terms denote the objects that we are reasoning about.
+	\item While formulas in \textsf{PL} evaluate to true or false, term in \textsf{FOL} evaluate to values in an underlying domain such as integers, strings, lists, etc.
+	\item Terms in \textsf{FOL} are defined by the grammar: \[
+	t\to x\mid c\mid f(t_1,\dots, f_n).
+	\] \begin{itemize}
+		\item Basic terms are \textbf{variables} $(x,y,z,\dots)$ and \textbf{constant} $(a,b,c,\dots)$.
+		\item Composite terms include $n$-ary \textbf{functions} applied to $n$ terms, \ie, $f(t_1,\dots,d_n)$, where $t_1$s are terms.
+		\begin{itemize}
+			\item A constant can be viewed as a $0$-ary (null-ary) function.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\begin{example}
+\ \begin{table}[h!]\setstretch{1.25}\centering\begin{tabular}{c|l}
+	\hline
+	Symbol & \multicolumn{1}{c}{Meaning} \\ \hline
+	$f(a)$ & A unary function $f$ applied to a constant \\
+	$g(x,b)$ & A binary function $g$ applied to a variable $x$ and a constant $b$ \\
+	$f(g(x,f(b)))$ &  \\ \hline
+\end{tabular}
+\end{table}
+\end{example}
+
+\subsection{Predicates}
+\begin{itemize}
+	\item The propositional variables of \textsf{PL} are generalized to \textbf{predicates} in \textsf{FOL}, denoted $p,q,r,\dots$.
+	\item An $n$-ary predicates take $n$ terms as arguments.
+	\item A \textsf{FOL} propositional variable is $0$-ary predicate, denoted $P,Q,\dots$.
+\end{itemize}
+\begin{example}
+\ \begin{table}[h!]\setstretch{1.25}\centering\begin{tabular}{c|l}
+	\hline
+	Symbol & \multicolumn{1}{c}{Meaning} \\ \hline
+	$P$ & A propositional variable (or $0$-ary predicate) \\
+	$p(f(x),g(x,f(x)))$ & A binary predicate applied to two terms\\ \hline
+\end{tabular}
+\end{table}
+\end{example}
+
 \section{Syntax and Semantics of FOL}
+\subsection{Syntax}
+\begin{itemize}
+	\item \textbf{Atom}: basic elements
+	\begin{itemize}
+		\item truth symbols $\bot$(``false'') and $\top$(``true'')
+		\item $n$-ary predicates applied to $n$ terms.
+	\end{itemize}
+	\item \textbf{Literal}: an atom $\alpha$ or its negation $\lnot\alpha$.
+	\item \textbf{Formula}: a literal or the application of a logical connective to formulas or the application of a quantifier to a formula.
+	\[
+	\begin{array}{ccll}
+		F & \to & \bot\mid\top\mid p(t_1,\dots,t_n) & \text{atom}\\
+		& | & \lnot F & \text{negation (``not'')} \\
+		& | & F_1\land F_2 & \text{conjunction (``and'')} \\
+		& | & F_1\lor F_2 & \text{disjunction (``or'')} \\
+		& | & F_1\to F_2 & \text{implication (``implies'')} \\
+		& | & F_1\leftrightarrow F_2 & \text{iff (``if and only if'')} \\
+		& | & \exists x.F[x] & \text{existential quantification}\\
+		& | & \forall x.F[x] & \text{universal quantification}
+	\end{array}
+	\]
+\end{itemize}
+\begin{remark}[Notation on Quantification]
+\ \begin{itemize}
+	\item In $\forall x.F[x]$ and $\exists x.F[x]$, $x$ is the \textbf{quantified variable} and $F[x]$ is the \textbf{scope} of the quantifier. We say $x$ in $F[x]$ is \textbf{bound}.
+	\item $\forall x.\forall y.F[x,y]$ is often abbreviated by $\forall x,y.F[x,y]$.
+	\item The scope of the quantified variable extends as far as possible: e.g., \[
+	\forall x.\underbrace{p(f(x),x)\to(\exists y.\underbrace{p(f(g(x,y)),g(x,y))})\land q(x,f(x))}.
+	\]
+	\item A variable is \textbf{free} in $F[x]$ if it is not bound. $\free(F)$ and $\bound(F)$ denote the free and bound variables of $F$, respectively. A formula $F$ is \textbf{closed} if $F$ has no free variables. E.g., \[
+	\forall x.p(f(x),y)\to\forall y.p(f(x),y).
+	\]
+	\item If $\free(F)=\set{x_1,\dots, x_n}$, then its \textbf{universal closure} is $\forall x_1\dots\forall x_n.F$ and its \textbf{existential closure} is $\exists x_1\dots\exists x_n.F$ They are usually written $\forall *.F$ and $\exists*.F$.
+\end{itemize}
+\end{remark}
+\begin{example}[FOL Formulas]
+\ \begin{itemize}
+	\item Every cat has its day. \[
+	\forall x.cat(x)\to\exists y.day(y)\land itsDay(x,y)
+	\]
+	\item 
+	\item 
+	\item Fermat's Last Theorem
+\end{itemize}
+\end{example}
+
+\subsection{Interpretation}
+A \fol \textbf{interpretation} $I:(D_I,\alpha_I)$ is a pair of a domain and an assignment.
 
 \section{Satisfiability and Validity}
 

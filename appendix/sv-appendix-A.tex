@@ -45,7 +45,7 @@
 
 \probox[Count of Truth Functions]{
 \begin{proposition}\hypertarget{prop-A11}{}
-	There are $2^{(2^k)}$ distinct truth functions on $k$ variables.
+	There are $2^{(2^k)}$ distinct truth functions on $k\in\N$ variables.
 \end{proposition}}
 \begin{proof}
 	Let $f:\B^k\to\B$ be a truth function for $k\in\N$. Then
@@ -90,6 +90,33 @@
 	\end{table}
 	\input{tikz/unary-truth-function}
 \end{proof}
+
+\newpage
+\begin{remark}[Group Structure]
+\ \begin{itemize}
+	\item $\left(\set{\id_P,\lnot},\circ\right)$ is a group, but $\left(\set{\id_P,\bot},\circ\right)$ and $\left(\set{\id_P,\top},\circ\right)$ are not: \begin{table}[h!]\centering
+	\begin{tabular}{c|cc}
+		\hline
+		$\circ$ & $\id_P$ & $\lnot$ \\ \hline
+		$\id_P$ & $\id_P$ & $\lnot$ \\
+		$\lnot$ & $\lnot$ & $\id_P$ \\ \hline
+	\end{tabular}\quad\quad
+	\begin{tabular}{c|cc}
+		\hline
+		$\circ$ & $\id_P$ & $\bot$ \\ \hline
+		$\id_P$ & $\id_P$ & $\bot$ \\
+		$\bot$ & $\bot$ & $\bot$ \\ \hline
+	\end{tabular}\quad\quad
+	\begin{tabular}{c|cc}
+		\hline
+		$\circ$ & $\id_P$ & $\top$ \\ \hline
+		$\id_P$ & $\id_P$ & $\top$ \\
+		$\top$ & $\top$ & $\top$ \\ \hline
+	\end{tabular}
+	\end{table}
+\end{itemize}	
+\end{remark}
+
 \begin{remark}
 The structure is a non-associative magma, also known as a groupoid. \begin{table}[h!]\centering
 	\begin{tabular}{c||c|c|c|c}
@@ -101,7 +128,6 @@ The structure is a non-associative magma, also known as a groupoid. \begin{table
 	\end{tabular}
 \end{table}
 \end{remark}
-
 
 \begin{tcolorbox}[colframe=corcolor,title={\color{white}\bf Binary Truth Functions}]
 	\begin{corollary}
