@@ -97,7 +97,96 @@
 \end{example}
 
 \subsection{Interpretation}
+\begin{observation}
+Consider \begin{align*}
+	x + y &> z, \\
+	y &> z-x,
+\end{align*} \ie, \[
+F:(x+y>z)\to (y>z-x).
+\]
+\begin{itemize}
+	\item Note $+,-,>$ are just symbols: we could written \begin{align*}
+		[+(x,y) > z] &\to [y > -(z,x)], \\
+		[> (+(x,y), z)] &\to [> (y, -(z,x))], \\
+		p (f(x,y), z) &\to p(y, g(z,x)).
+	\end{align*}
+	\item Domain: $D_I=\Z=\set{\dots,-2,-1,0,1,2,\dots}$
+	\item Assignment: \begin{align*}
+		\alpha_I = \{
+		+ &\mapsto +_\Z, \\
+		- &\mapsto -_\Z, \\
+		> &\mapsto >_\Z, \\
+		x &\mapsto 13, \\
+		y &\mapsto 42, \\
+		z &\mapsto 1, \\
+		&\dots\\ \}
+	\end{align*}
+\end{itemize}
+\end{observation}
+
+\defbox[Interpretation]{\begin{definition}
 A \fol \textbf{interpretation} $I:(D_I,\alpha_I)$ is a pair of a domain and an assignment.
+\begin{itemize}
+	\item $D_I$ is a nonempty set of values such as integers, real numbers, etc.
+	\item $\alpha_I$ maps variables, constant, function, and predicate symbols to elements, functions, and predicates over $D_I$.
+	\begin{itemize}
+		\item each variable $x$ is assigned a value from $D_I$
+		\item each $n$-ary function symbol $f$ assigned an $n$-ary function $f_I:D_I^n\to D_I$.
+		\item each $n$-ary predicate symbol $p$ is assigned an $n$-ary predicate $p_I:D_I^n\to\set{\text{true},\text{false}}$
+	\end{itemize}
+	\item Arbitrary terms and atoms are evaluated recursively: \begin{align*}
+		\alpha_I[f(t_1,\dots,t_n)] &= \alpha_I[f](\alpha_I[t_1],\dots,\alpha_I[t_n]), \\
+		\alpha_I[p(t_1,\dots,t_n)] &= \alpha_I[p](\alpha_I[t_1],\dots,\alpha_I[t_n]).
+	\end{align*}
+\end{itemize}
+\end{definition}}
+
+\newpage
+\subsection{Semantics of First-Order Logic}
+\begin{observation}
+Consider \[
+F:(x+y>z)\to (y>z-x).
+\]
+\begin{itemize}
+%	\item Note $+,-,>$ are just symbols: we could written \begin{align*}
+%		[+(x,y) > z] &\to [y > -(z,x)], \\
+%		[> (+(x,y), z)] &\to [> (y, -(z,x))], \\
+%		p (f(x,y), z) &\to p(y, g(z,x)).
+%	\end{align*}
+	\item Domain: $D_I=\Z=\set{\dots,-2,-1,0,1,2,\dots}$
+	\item Assignment: \begin{align*}
+		\alpha_I = \{
+		+ &\mapsto +_\Z, \\
+		- &\mapsto -_\Z, \\
+		> &\mapsto >_\Z, \\
+		x &\mapsto 13, \\
+		y &\mapsto 42, \\
+		z &\mapsto 1, \\
+		&\dots\\ \}
+	\end{align*}
+	\(\begin{array}{lll}
+		1. & I\models x + y > z & \text{since}\ \alpha_I[x+y>z]=13+_\Z 42 >_\Z 1 \\
+		2. & I\models y > z - x & \text{since}\ \alpha_I[x+y>z]=42 >_\Z 1 -_\Z 13 \\
+		3. & I\models F & \text{by 1,2, and the semantics of}\ \to
+	\end{array}\)
+\end{itemize}
+\end{observation}
+\begin{observation}
+Consider \[
+F:\exists x.f(x)=g(x).
+\] and the interpretation $I:(D:\set{v_1,v_2},\alpha_I)$: \begin{align*}
+	\alpha_I = \{
+	f(v_1) &\mapsto v_1, \\
+	f(v_2) &\mapsto v_2, \\
+	g(v_1) &\mapsto v_2, \\
+	g(v_2) &\mapsto v_1 \}
+\end{align*}
+Compute the truth value of $F$ under $I$ as follows:\\ \\ \(\begin{array}{lrcll}
+1. & I\rhd \set{x\mapsto v} &\not\models & f(x)=g(x) & \text{for all}\ v\in D \\
+2. & I &\not\models & \exists x.f(x)=g(x) & \text{by the semantics of}\ \exists
+\end{array}
+\)
+\end{observation}
 
 \section{Satisfiability and Validity}
 
