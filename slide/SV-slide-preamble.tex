@@ -1,0 +1,95 @@
+\usepackage{kotex}
+\usepackage{commath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{arydshln} % Include this package
+\usepackage{bbding}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{math} % for calculations
+\usetikzlibrary{shapes, arrows.meta, positioning, shadows}
+\usetikzlibrary{arrows,shapes.geometric}  % Optional, based on your needs
+\usetikzlibrary{3d, calc}
+\usetikzlibrary{matrix, positioning, arrows.meta, shapes.multipart, chains}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{tcolorbox}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.15}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{algpseudocode}
+\usepackage{setspace}
+\SetKwComment{Comment}{/* }{ */}
+\SetKwProg{Fn}{Function}{:}{end}
+\SetKw{End}{end}
+\SetKw{DownTo}{downto}
+
+% Define a new environment for algorithms without line numbers
+\newenvironment{algorithm2}[1][]{
+	% Save the current state of the algorithm counter
+	\newcounter{tempCounter}
+	\setcounter{tempCounter}{\value{algocf}}
+	% Redefine the algorithm numbering (remove prefix)
+	\renewcommand{\thealgocf}{}
+	\begin{algorithm}
+	}{
+	\end{algorithm}
+	% Restore the algorithm counter state
+	\setcounter{algocf}{\value{tempCounter}}
+}
+
+\usepackage{xcolor}   % Required for specifying colors
+
+\usepackage{listings} %Code
+\renewcommand{\lstlistingname}{Code}%
+\definecolor{keyword}{RGB}{255, 0, 0}
+\definecolor{identifier}{RGB}{0, 0, 255}
+\definecolor{comment}{RGB}{0, 128, 0}
+\definecolor{string}{RGB}{163, 21, 21}
+
+\lstdefinestyle{c}{
+	language=C,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{keyword},
+	identifierstyle=\color{identifier},
+	commentstyle=\color{comment}\itshape,
+	stringstyle=\color{string},
+	showstringspaces=false,
+	%	numberstyle=\tiny\color{gray},
+	%	numbersep=5pt,
+	frame=single,
+	tabsize=4,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=true,
+	%	numbers=left
+}
+
+\usepackage{amsthm, amsmath}
+
+
+\newcommand{\cyclic}[1]{\langle #1 \rangle}
+\newcommand{\uniform}{\overset{\$}{\leftarrow}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\newcommand{\xmark}{\textcolor{red}{\XSolidBrush}}
+\newcommand{\vmark}{\textcolor{green!75!black}{\CheckmarkBold}}
