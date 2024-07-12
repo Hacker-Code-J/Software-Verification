@@ -149,7 +149,7 @@
 			\begin{center}\adjustbox{scale=.75}{\begin{tikzpicture}
 					\draw[red, line width=.5mm] (0,0) -- (0,2) node[above] {Soundness};
 					\draw[blue, line width=.5mm,rotate=125] (0,0) -- (0,2) node[above, left] {Completeness};
-					\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automation};
+					\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automatic};
 			\end{tikzpicture}}\end{center}
 		\end{itemize}
 	\end{frame}
@@ -159,7 +159,7 @@
 			\ \begin{center}\adjustbox{scale=.75}{\begin{tikzpicture}
 				\draw[red, line width=.5mm] (0,0) -- (0,2) node[above] {Soundness};
 				\draw[blue, line width=.5mm,rotate=125] (0,0) -- (0,2) node[above, left] {Completeness};
-				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automation};
+				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automatic};
 				\draw[dotted, line width=.5mm, magenta, fill=magenta, fill opacity=0.5] 
 				(0,.5) -- (-1.6,-1.15) -- (1.6,-1.15) -- cycle;
 			\end{tikzpicture}}\end{center}
@@ -167,7 +167,7 @@
 		\ \begin{center}\adjustbox{scale=.75}{\begin{tikzpicture}
 			\draw[red, line width=.5mm] (0,0) -- (0,2) node[above] {Soundness};
 			\draw[blue, line width=.5mm,rotate=125] (0,0) -- (0,2) node[above, left] {Completeness};
-			\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automation};
+			\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automatic};
 			\draw[dotted, line width=.5mm, magenta, fill=magenta, fill opacity=0.5] 
 			(0,2) -- (-.5,-.35) -- (1.6,-1.15) -- cycle;
 	\end{tikzpicture}}\end{center}
@@ -179,7 +179,7 @@
 			\ \begin{center}\adjustbox{scale=.75}{\begin{tikzpicture}
 				\draw[red, line width=.5mm] (0,0) -- (0,2) node[above] {Soundness};
 				\draw[blue, line width=.5mm,rotate=125] (0,0) -- (0,2) node[above, left] {Completeness};
-				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automation};
+				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automatic};
 				\draw[dotted, line width=.5mm, magenta, fill=magenta, fill opacity=0.5] 
 				(0,2) -- (-1.6,-1.15) -- (.5,-.35) -- cycle;
 			\end{tikzpicture}}\end{center}
@@ -187,7 +187,7 @@
 			\ \begin{center}\adjustbox{scale=.75}{\begin{tikzpicture}
 				\draw[red, line width=.5mm] (0,0) -- (0,2) node[above] {Soundness};
 				\draw[blue, line width=.5mm,rotate=125] (0,0) -- (0,2) node[above, left] {Completeness};
-				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automation};
+				\draw[green!75!black, line width=.5mm, rotate=-125] (0,0) -- (0,2) node[above, right] {Automatic};
 				\draw[dotted, line width=.5mm, magenta, fill=magenta, fill opacity=0.5] 
 				(0,2) -- (-1.6,-1.15) -- (1.6,-1.15) -- cycle;
 				\node[above] (0,0) {\bf\Huge ?};
@@ -310,7 +310,24 @@
 			\item Static Analysis Process:
 			\begin{enumerate}
 				\item Choose abstract value (domain), e.g., $\hat{V}=\set{\top,e,o,\bot}$
-				\item Define the program execution in terms of abstract values:
+				\item Define the program execution in terms of abstract values:\ \\ \begin{center}
+					\begin{minipage}{.4\textwidth}\begin{tabular}{|c|c|c|c|c|}
+							\hline $\hat{\times}$ & $\boldsymbol{\top}$ & $\boldsymbol{e}$ & $\boldsymbol{o}$ & $\boldsymbol{\bot}$ \\ \hline
+							$\boldsymbol{\top}$ & $\top$ & $e$ & $\top$ & $\bot$ \\ \hline
+							$\boldsymbol{e}$ & $e$ & $e$ & $e$ & $\bot$ \\ \hline
+							$\boldsymbol{o}$ & $\top$ & $e$ & $o$ & $\bot$ \\ \hline
+							$\boldsymbol{\bot}$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\ \hline
+						\end{tabular}
+					\end{minipage}\begin{minipage}{.4\textwidth}\begin{tabular}{|c|c|c|c|c|}
+						\hline $\hat{+}$ & $\boldsymbol{\top}$ & $\boldsymbol{e}$ & $\boldsymbol{o}$ & $\boldsymbol{\bot}$ \\ \hline
+						$\boldsymbol{\top}$ & $\top$ & $\top$ & $\top$ & $\bot$ \\ \hline
+						$\boldsymbol{e}$ & $\top$ & $e$ & $o$ & $\bot$ \\ \hline
+						$\boldsymbol{o}$ & $\top$ & $o$ & $e$ & $\bot$ \\ \hline
+						$\boldsymbol{\bot}$ & $\bot$ & $\bot$ & $\bot$ & $\bot$ \\ \hline
+					\end{tabular}
+				\end{minipage}
+				\end{center}
+				\item[]
 				\item ``Execute'' the program: \[
 				e\ \hat{\times}\ e\ \hat{+}\ o\ \hat{\times}\ o\ =\ o
 				\]
@@ -330,9 +347,9 @@
 			\item Each approach has its own strengths and weaknesses: e.g.,
 		\end{itemize}
 		\begin{table}[h!]\setstretch{1.5}\adjustbox{scale=.8}{
-			\begin{tabular}{c||c|c|c|c|}
+			\begin{tabular}{|c|c|c|c|c|}
 				\hline
-				& \textbf{Sound} & \textbf{Complete} & \textbf{Automatic} & \textbf{When} \\ \hline\hline
+				& \textbf{Sound} & \textbf{Complete} & \textbf{Automatic} & \textbf{When} \\ \hline
 				\textbf{Testing/Fuzzing} & \xmark & \vmark & \vmark & Dynamic (Runtime) \\ \hline
 				\textbf{Symbolic Execution} & \xmark & \vmark & \vmark & Static/Dynamic \\ \hline
 				\textbf{Static Analysis} & \vmark & \xmark & \vmark & Static \\ \hline
