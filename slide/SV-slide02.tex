@@ -1,5 +1,9 @@
 \documentclass[10pt]{beamer}
 \input{SV-slide-preamble}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\true}{\textcolor{red}{\texttt 1}}
+\newcommand{\false}{\textcolor{red}{\texttt 0}}
+\newcommand{\id}{\textnormal{id}}
 \title{\huge\bf Software Verification}
 \subtitle{\textcolor{magenta}{\textbf{Lecture 02. OCaml Programming I}}}
 % \date{\today}
@@ -25,12 +29,12 @@
 	\begin{frame}{1. Motivation}
 		\url{https://www.tiobe.com/tiobe-index/}
 		\begin{figure}[h!]
-			\includegraphics[scale=.28]{ranking1}
+			\includegraphics[scale=.35]{ranking1}
 		\end{figure}
 	\end{frame}
 	\begin{frame}{1. Motivation}
 	\begin{figure}[h!]
-		\includegraphics[scale=.28]{ranking2}
+		\includegraphics[scale=.35]{ranking2}
 	\end{figure}
 	\end{frame}
 %	\begin{frame}{1. Motivation}
@@ -417,7 +421,11 @@ Hello World
 			\end{itemize}
 		\end{itemize}
 	\end{frame}
-
+\begin{itemize}
+	\item[]
+	\item[]
+	\item[]
+\end{itemize}
 \begin{lstlisting}[style=zsh]
 @:~$>ocaml
 
@@ -430,6 +438,74 @@ val f : int -> int -> int = <fun>
 - : int = 3
 \end{lstlisting}
 
+\newpage
+\ \\ \textbf{\Huge Currying} \begin{table}[h!]\centering\begin{tabular}{|cc|c|} \hline
+		$P$ & $Q$ & $P\land Q$ \\ \hline
+		$\false$ & $\false$ & $\false$ \\ \hline
+		$\false$ & $\true$ & $\false$ \\ \hline
+		$\true$ & $\false$ & $\false$ \\ \hline
+		$\true$ & $\true$ & $\true$ \\ \hline
+	\end{tabular}
+\end{table}
+\begin{center}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.8}{
+			\begin{tikzpicture}
+				% Draw the sets A and B
+				\draw[thick] (-2,0) ellipse (1 and 2);
+				\draw[thick] ( 2,0) ellipse (1 and 2);
+				
+				% Labels for sets
+				\node at (-2, 2.25) {$\B\times\B$};
+				\node at ( 2, 2.25) {$\B$};
+				
+				% Draw the arrows representing the function
+				\draw[-Stealth, thick] (-1.25, 2.25) -- (1.5,2.25) node[midway, above] {$\land$};
+				
+				\node at (-2,  1.05) {$(\false,\false)$};
+				\node at (-2,   .35) {$(\false,\true)$};
+				\node at (-2, - .35) {$(\true,\false)$};
+				\node at (-2, -1.05) {$(\true,\true)$};
+				\draw[fill] (-1.35, 1.05) circle (.05);
+				\draw[fill] (-1.35,  .35) circle (.05);
+				\draw[fill] (-1.35, -.35) circle (.05);
+				\draw[fill] (-1.35,-1.05) circle (.05);
+				
+				\node at (2,  .75) {$\false$};
+				\node at (2, -.75) {$\true$};
+				\draw[fill] (1.75, .75) circle (.05);
+				\draw[fill] (1.75,-.75) circle (.05);
+				
+				\draw[-Stealth, thick] (-1.35, 1.05) -- (1.75, .75);
+				\draw[-Stealth, thick] (-1.35, .35) -- (1.75, .75);
+				\draw[-Stealth, thick] (-1.35, -.35) -- (1.75, .75);
+				\draw[-Stealth, thick] (-1.35, -1.05) -- (1.75, -.75);
+		\end{tikzpicture}}\\
+	\end{minipage}\begin{minipage}{.48\textwidth}\centering\adjustbox{scale=.8}{
+			\begin{tikzpicture}
+				% Draw the sets A and B
+				\draw[thick] (-2,0) ellipse (1 and 2);
+				\draw[thick] ( 2,0) ellipse (1 and 2);
+				
+				% Labels for sets
+				\node at (-2, 2.25) {$\B$};
+				\node at ( 2, 2.25) {$\B^{\B}$};
+				
+				% Draw the arrows representing the function
+				\draw[-Stealth, thick] (-1.5, 2.25) -- (1.5,2.25) node[midway, above] {$\land$};
+				
+				\node at (-2, .75) {$\false$};
+				\node at (-2, -.75) {$\true$};
+				\draw[fill] (-1.75,.75) circle (.05);
+				\draw[fill] (-1.75,-.75) circle (.05);
+				
+				\node at (2, .75) {$\bot$};
+				\node at (2, -.75) {$\id_Q$};
+				\draw[fill] (1.5,.75) circle (.05);
+				\draw[fill] (1.5,-.75) circle (.05);
+				
+				\draw[-Stealth, thick] (-1.75, .75) -- (1.5, .75);
+				\draw[-Stealth, thick] (-1.75, -.75) -- (1.5, -.75);
+		\end{tikzpicture}}\\
+\end{minipage}\end{center}
 \newpage
 %	\subsection{2.2 리스트와 재귀함수}
 %	\begin{frame}{2.2 리스트와 재귀함수}
