@@ -401,15 +401,36 @@ Hello World
 		\begin{itemize}
 			\item 함수의 예:
 			\begin{itemize}
-				\item \texttt{fun $x$ -> $x+1$}
-				\item \texttt{fun $y$ -> $y*y$}
-				\item \texttt{fun $x$ -> if $x>0$ then $x+1$ else $x*x$}
-				\item \texttt{fun $x$ -> fun $y$ -> $x+y$}
-				\item \texttt{fun $x$ -> fun $y$ -> fun $z$ -> $x+y+z$}
+				\item[*] \texttt{fun $x$ -> $x+1$}
+				\item[*] \texttt{fun $y$ -> $y*y$}
+				\item[*] \texttt{fun $x$ -> if $x>0$ then $x+1$ else $x*x$}
+				\item[*] \texttt{fun $x$ -> fun $y$ -> $x+y$}
+				\item[*] \texttt{fun $x$ -> fun $y$ -> fun $z$ -> $x+y+z$}
 			\end{itemize}
-			\item 
+			\item[]
+			\item Syntactic Sugar \[
+			\texttt{fun $x_1\ \dots\ x_n$\ ->\ $e$}
+			\]
+			\begin{itemize}
+				\item[*] \texttt{fun $x$ $y$ -> $x+y$}
+				\item[*] \texttt{fun $x$ $y$ $z$ -> $x+y+z$}
+			\end{itemize}
 		\end{itemize}
 	\end{frame}
+
+\begin{lstlisting}[style=zsh]
+@:~$>ocaml
+
+# let f = fun x y -> x + y;;
+val f : int -> int -> int = <fun>
+# f 1 2;
+- : int = 3
+# let g = f 1;
+# g 2;;
+- : int = 3
+\end{lstlisting}
+
+\newpage
 %	\subsection{2.2 리스트와 재귀함수}
 %	\begin{frame}{2.2 리스트와 재귀함수}
 %		content...
