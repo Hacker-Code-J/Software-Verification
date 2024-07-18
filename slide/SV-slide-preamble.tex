@@ -79,6 +79,77 @@
 	%	numbers=left
 }
 
+\definecolor{backcolor}{HTML}{FAFAFA}
+\lstdefinestyle{ocaml}{
+	language=[Objective]Caml,
+	basicstyle=\ttfamily\bfseries\footnotesize,
+	keywordstyle=\color{blue}\bfseries,
+	commentstyle=\color{gray}\itshape,
+	stringstyle=\color{orange}\bfseries,
+	numberstyle=\tiny\color{purple},
+	identifierstyle=\color{teal},
+	emphstyle=\color{red}\bfseries,
+	backgroundcolor=\color{backcolor},
+	frame=single,
+	rulecolor=\color{black},
+	frameround=tttt,
+	numbers=left,
+	numbersep=10pt,
+	showspaces=false,
+	showstringspaces=false,
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=2,
+	captionpos=b,
+	literate={->}{{$\rightarrow$}}1
+	{<-}{{$\leftarrow$}}1
+	{=>}{{$\Rightarrow$}}1
+	{|->}{{$\mapsto$}}1
+	{>>}{{$\gg$}}1
+	{<<}{{$\ll$}}1
+}
+
+\definecolor{commentColor}{rgb}{0.25,0.5,0.35}
+\definecolor{stringColor}{rgb}{0.5,0.1,0.5}
+\definecolor{vsCodeRed}{HTML}{E06C6A}
+\definecolor{vsCodeBlue}{HTML}{3986E9}
+\definecolor{CLIGreen}{HTML}{87D368}
+\definecolor{rustBuild}{HTML}{A5BE5D}
+\definecolor{rustBack}{HTML}{282C34}
+\lstdefinestyle{zsh}{
+	language=bash,                  % Set the language to bash (closest to Zsh)
+	backgroundcolor=\color{rustBack},
+	commentstyle=\color{rustBuild}\ttfamily,
+	keywordstyle=\color{rustBuild}\bfseries,
+	stringstyle=\color{stringColor!70!white}\ttfamily,
+	keywordstyle=[2]{\bfseries\color{rustBuild}},
+	keywordstyle=[3]{\bfseries\color{CLIGreen}},
+	showspaces=false,               % Don't show spaces as underscores
+	showstringspaces=false,         % Don't highlight spaces in strings
+	breaklines=true,                % Automatic line breaking
+	frame=none,                     % No frame around the code
+	basicstyle=\ttfamily\color{white}, % White basic text color for contrast
+	extendedchars=true,             % Allow extended characters
+	captionpos=b,                   % Caption-position at bottom
+	escapeinside={\%*}{*)},         % Allow LaTeX inside your code
+	morekeywords={echo,ls,cd,pwd,exit,clear,man,unalias,zsh,source}, % Add more keywords
+	upquote=true,                   % Ensure straight quotes are used
+	literate=
+	{\$}{{\textcolor{vsCodeRed}{$\boldsymbol{\$}$}}}1
+	{>}{{\textcolor{CLIGreen}{$\boldsymbol{>}$}}}1
+	{<}{{\textcolor{CLIGreen}{$\boldsymbol{<}$}}}1
+	{@}{{\textcolor{vsCodeRed}{@}}}1
+	{~}{{\textcolor{vsCodeRed}{$\boldsymbol{\sim}$}}}1
+	{:}{{\textcolor{rustBuild}{:}}}1,
+	%		{:}{{\textcolor{red}{:}}}1
+	%		{~}{{\textcolor{red}{\textasciitilde}}}1 % Color certain characters
+	%		{├}{{\textbrokenbar}}1  % Replace ├ with \textbrokenbar
+	%		{─}{{\textendash}}1     % Replace ─ with \textendash
+	%		{└}{{`}}1,              % Replace └ with `
+	morekeywords=[2]{cryptol, load, prove, ocaml},
+	morekeywords=[3]{Main}
+}
+
 \usepackage{amsthm, amsmath}
 
 
