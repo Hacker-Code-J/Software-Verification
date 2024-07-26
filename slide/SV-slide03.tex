@@ -20,84 +20,84 @@
 	
 	\maketitle
 	
-	\begin{frame}{Table of Contents}
-		\setbeamertemplate{section in toc}[sections numbered]
-		\tableofcontents%[hideallsubsections]
-	\end{frame}
-	
-	\section{Solutions for Homework}
-	\begin{frame}{1. Motivation}
-		\url{https://www.tiobe.com/tiobe-index/}
-		\begin{figure}[h!]
-			\includegraphics[scale=.35]{ranking1}
-		\end{figure}
-	\end{frame}
-	\begin{frame}{1. Motivation}
-	\begin{figure}[h!]
-		\includegraphics[scale=.35]{ranking2}
-	\end{figure}
-	\end{frame}
-%	\begin{frame}{1. Motivation}
-%		\begin{enumerate}
-%			\item[3.] Current Technologies for Safe Software
-%			\begin{enumerate}[(a)]
-%				\item[]
-%				\item Code Review
-%				\item[]
-%				\item Testing
-%				\item[]
-%				\item Debugging
-%				\item[]
-%				\item Simulation
-%				\item[]
-%				\item $\cdots$
-%			\end{enumerate}
-%		\end{enumerate}
+%	\begin{frame}{Table of Contents}
+%		\setbeamertemplate{section in toc}[sections numbered]
+%		\tableofcontents%[hideallsubsections]
 %	\end{frame}
+	
+%	\section{Solutions for Homework}
+%	\begin{frame}{1. Motivation}
+%		\url{https://www.tiobe.com/tiobe-index/}
+%		\begin{figure}[h!]
+%			\includegraphics[scale=.35]{ranking1}
+%		\end{figure}
+%	\end{frame}
+%	\begin{frame}{1. Motivation}
+%	\begin{figure}[h!]
+%		\includegraphics[scale=.35]{ranking2}
+%	\end{figure}
+%	\end{frame}
+%%	\begin{frame}{1. Motivation}
+%%		\begin{enumerate}
+%%			\item[3.] Current Technologies for Safe Software
+%%			\begin{enumerate}[(a)]
+%%				\item[]
+%%				\item Code Review
+%%				\item[]
+%%				\item Testing
+%%				\item[]
+%%				\item Debugging
+%%				\item[]
+%%				\item Simulation
+%%				\item[]
+%%				\item $\cdots$
+%%			\end{enumerate}
+%%		\end{enumerate}
+%%	\end{frame}
 
-	\section{Basic OCaml Programming}
-	\subsection{2.1 OCaml 기본 구성}
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{OCaml 프로그램의 기본 단위 공식}
-		
-		\begin{itemize}
-			\item 프로그램을 구성하는 두 가지 기본 단위
-			\begin{itemize}
-				\item[]
-				\item[] Statement: \[
-				\texttt{x = x + 1}
-				\]
-				\item[] Expression: \[
-				\texttt{(x + y) * 2}
-				\]
-			\end{itemize}
-		\end{itemize}
-	\end{frame}
-
-\begin{lstlisting}[style=ocaml]
-let hello = "Hello"
-let world = "World"
-let helloworld = hello ^ " " ^ world
-let _ = print_endline helloworld
-\end{lstlisting}
-
-Compile
-\begin{lstlisting}[style=zsh]
-@:~$>ocaml helloworld.ml
-\end{lstlisting}
-
-OCaml REPL(Real-Eval-Print Loop)
-\begin{lstlisting}[style=zsh]
-@:~$>ocaml
-
-# #use "helloworld.ml";;
-val hello : string = "Hello"
-val world : string = "World"
-val helloworld : string = "Hello World"
-Hello World
-- : unit = ()
-# exit 1;;
-\end{lstlisting}
+%	\section{Basic OCaml Programming}
+%	\subsection{2.1 OCaml 기본 구성}
+%	\begin{frame}{2.1 OCaml 기본 구성}
+%		\textbf{OCaml 프로그램의 기본 단위 공식}
+%		
+%		\begin{itemize}
+%			\item 프로그램을 구성하는 두 가지 기본 단위
+%			\begin{itemize}
+%				\item[]
+%				\item[] Statement: \[
+%				\texttt{x = x + 1}
+%				\]
+%				\item[] Expression: \[
+%				\texttt{(x + y) * 2}
+%				\]
+%			\end{itemize}
+%		\end{itemize}
+%	\end{frame}
+%
+%\begin{lstlisting}[style=ocaml]
+%let hello = "Hello"
+%let world = "World"
+%let helloworld = hello ^ " " ^ world
+%let _ = print_endline helloworld
+%\end{lstlisting}
+%
+%Compile
+%\begin{lstlisting}[style=zsh]
+%@:~$>ocaml helloworld.ml
+%\end{lstlisting}
+%
+%OCaml REPL(Real-Eval-Print Loop)
+%\begin{lstlisting}[style=zsh]
+%@:~$>ocaml
+%
+%# #use "helloworld.ml";;
+%val hello : string = "Hello"
+%val world : string = "World"
+%val helloworld : string = "Hello World"
+%Hello World
+%- : unit = ()
+%# exit 1;;
+%\end{lstlisting}
 	\newpage
 	\begin{frame}{2.1 OCaml 기본 구성}
 		\textbf{$\triangleright$ \textcolor{red}{Function Expression} (함수식)}
@@ -236,209 +236,15 @@ val factorial : int -> int = <fun>
 			\# id "abc";; \\
 			- : string = "abc" \\
 			\# id true;; \\
-			- : bool = true \\
-		\end{tcolorbox}
-		\begin{itemize}
-			\item[]
-			\item[]
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Boolean Expressions (논리식)}
-		
-		\begin{itemize}
-			\item 논리값
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# true;; \\
-			- : bool = true\\
-			\# false;; \\
-			- : bool = false
-		\end{tcolorbox}
-		\begin{itemize}
-			\item 비교 연산자 (산술식 $\to$ 논리식)
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# 1 = 2;; \\
-			- : bool = false\\
-			\# 1 <> 2;; \\
-			- : bool = true\\
-			\# 2 <= 2;; \\
 			- : bool = true
 		\end{tcolorbox}
-	\end{frame}
-
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Boolean Expressions (논리식)}
-		
 		\begin{itemize}
-			\item 논리 연산자 (논리식 $\to$ 논리식)
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# true \&\& (false || not false);; \\
-			- : bool = true\\
-			\# (2 > 1) \&\& (3 > 2);; \\
-			- : bool = false
-		\end{tcolorbox}
-		\begin{itemize}
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-		\end{itemize}
-	\end{frame}
-
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Primitive Values (기본값)}
-		
-		\begin{itemize}
-			\item OCmal은 \begin{itemize}
-				\item[-] integer (정수) 
-				\item[-] float (실수)
-				\item[-] boolean (논리)
-				\item[-] character (문자)
-				\item[-] string (문자열)
-				\item[-] unit (유닛)
-			\end{itemize}을 제공
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# 'c';; \\
-			- : char = 'c'\\
-			\# "Objecive " \^{} "Caml";; \\
-			- : string = "Objective Caml"\\
-			\# ();;\\
-			- : unit = ()
-		\end{tcolorbox}
-	\end{frame}
-
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Conditional Expression (조건식)}	
-		\[
-		\texttt{if $e_1$ then $e_2$ else $e_3$}
-		\]
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-		\# if 1 then 2 else 3;;
-		\end{tcolorbox}
-		\begin{itemize}
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-			\item[] 
-		\end{itemize}
-	\end{frame}
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Conditional Expression (조건식)}	
-		\[
-		\texttt{if $e_1$ then $e_2$ else $e_3$}
-		\]
-		\begin{itemize}
-			\item $e_1$은 반드시 논리식이어야 함. 즉 $e_1$의 값은 true or false
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# if 1 then 2 else 3;;\\
-			Error: This expression has type int but an expression was expected of type
-			bool
-			because it is in the condition of an if-statement
-		\end{tcolorbox}
-		\begin{itemize}
-			\item[] 
-			\item[] 
-			\item[] 
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ Conditional Expression (조건식)}
-		\begin{itemize}
-			\item 조건식의 값은 $e_1$ 값에 따라서 결정
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# if 2 $>$ 1 then 0 else 1;;\\
-			- : int = 0 \\
-			\# if 2 < 1 then 0 else 1;; \\
-			- : int = 1
-		\end{tcolorbox}
-		\begin{itemize}
-			\item $e_2$와 $e_3$는 타입이 같아야 함
-		\end{itemize}
-		\begin{tcolorbox}[colback=backcolor]\ttfamily
-			\# if true then 1 else true;;\\
-			Error: This expression has type bool but an expression was expected of type
-			int
-		\end{tcolorbox}
-		\begin{itemize}
+			\item[]
+			\item[]
+			\item[]
 			\item[]
 		\end{itemize}
 	\end{frame}
-
-	\begin{frame}{2.1 OCaml 기본 구성}
-		\textbf{$\triangleright$ \textcolor{red}{Function Expression} (함수식)}
-		\[
-		\texttt{fun $x$ -> $e$}
-		\] 
-		\begin{itemize}
-			\item 함수의 예:
-			\begin{itemize}
-				\item[*] \texttt{fun $x$ -> $x+1$}
-				\item[*] \texttt{fun $y$ -> $y*y$}
-				\item[*] \texttt{fun $x$ -> if $x>0$ then $x+1$ else $x*x$}
-				\item[*] \texttt{fun $x$ -> fun $y$ -> $x+y$}
-				\item[*] \texttt{fun $x$ -> fun $y$ -> fun $z$ -> $x+y+z$}
-			\end{itemize}
-			\item[]
-			\item Syntactic Sugar \[
-			\texttt{fun $x_1\ \dots\ x_n$\ ->\ $e$}
-			\]
-			\begin{itemize}
-				\item[*] \texttt{fun $x$ $y$ -> $x+y$}
-				\item[*] \texttt{fun $x$ $y$ $z$ -> $x+y+z$}
-			\end{itemize}
-		\end{itemize}
-	\end{frame}
-\begin{itemize}
-	\item[]
-	\item[]
-	\item[]
-\end{itemize}
-\begin{lstlisting}[style=zsh]
-@:~$>ocaml
-
-# let f = fun x y -> x + y;;
-val f : int -> int -> int = <fun>
-# f 1 2;
-- : int = 3
-# let g = f 1;
-# g 2;;
-- : int = 3
-\end{lstlisting}
-
-\newpage
-%	\subsection{2.2 리스트와 재귀함수}
-%	\begin{frame}{2.2 리스트와 재귀함수}
-%		content...
-%	\end{frame}
-%
-%	
-%	\subsection{2.3 고차 함수}
-%	\begin{frame}{2.3 고차 함수}
-%		content...
-%	\end{frame}
-%	
-%	
-%	\subsection{2.4 사용자 정의 타입}
-%	\begin{frame}{2.4 사용자 정의 타입}
-%		content...
-%	\end{frame}
-
-	\section{Advanced OCaml Programming}
 	
 	\newpage
 	{\setbeamercolor{palette primary}{fg=black, bg=-blue}
